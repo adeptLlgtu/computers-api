@@ -1,0 +1,13 @@
+stages:
+  - deploy
+
+deploy srv01:
+  stage: deploy
+  only:
+    - master
+  tags:
+    - shmelev-srv01
+  script:
+    - mkdir -p /home/docker/projects/deweb-api
+    - rsync -az --delete . /home/docker/projects/deweb-api
+    - chmod -Rf 777 /home/docker/projects/deweb-api/cache
